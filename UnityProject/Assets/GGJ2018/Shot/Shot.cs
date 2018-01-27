@@ -4,10 +4,29 @@ using UnityEngine;
 
 public class Shot : MonoBehaviour
 {
-
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    public string _characterID;
+    public Color _color;
+    public float _travelDistance = 0;
+    public int _bounceCount = 0;
+    public string CharacterID { get { return _characterID; } set { _characterID = value; } }
+    public bool _isValid = true;
+    private void Update()
     {
-        CharacterPlayer cp = collision.gameObject.GetComponent<CharacterPlayer>();
+        this.GetComponent<Renderer>().material.SetColor("_TintColor", _color);
+    }
+
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        _bounceCount++;
+        /*
+        CharacterCatcher cc = collision.gameObject.GetComponent<CharacterCatcher>();
+        if (cc != null)
+            Destroy(this.gameObject);*/
+    }
+
+    public void FixedUpdate()
+    {
+        _travelDistance += GetComponent<Rigidbody2D>().velocity.magnitude * Time.fixedDeltaTime;
     }
 }

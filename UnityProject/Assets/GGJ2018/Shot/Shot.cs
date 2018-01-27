@@ -5,9 +5,16 @@ using UnityEngine;
 public class Shot : MonoBehaviour
 {
     public string _characterID;
+    public Color _color;
     public float _travelDistance = 0;
     public int _bounceCount = 0;
     public string CharacterID { get { return _characterID; } set { _characterID = value; } }
+    public bool _isValid = true;
+    private void Update()
+    {
+        this.GetComponent<Renderer>().material.SetColor("_TintColor", _color);
+    }
+
 
     private void OnCollisionExit2D(Collision2D collision)
     {

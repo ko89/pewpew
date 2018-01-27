@@ -17,15 +17,22 @@ public class CharacterCatcher : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        StartCoroutine(SuckIn(collision.gameObject));
+        Shot s = collision.gameObject.GetComponent<Shot>();
+
+        if(s != null)
+        {
+            StartCoroutine(SuckIn(s, collision.gameObject));
+        }
+
     }
 
-    public IEnumerator SuckIn(GameObject go)
+    public IEnumerator SuckIn(Shot s, GameObject go)
     {
-        Shot s = go.GetComponent<Shot>();
-        if (s._travelDistance < 5)
+
+        if (s._travelDistance < 0.8 || !s._isValid)
             yield break;
 
+        s._isValid = false;
         _character.RecieveSoul();
         yield return new WaitForFixedUpdate();
         while(true)

@@ -7,7 +7,9 @@ public class CharacterPlayer : MonoBehaviour {
 
     public bool _hasSoul = false;
 
-    public float _maxSpeed = 0.2f;
+    public float _normalSpeed = 0.2f;
+    public float _hollowSpeed = 0.1f;
+
     public float _aimingSensitivity = 0.5f;
     public float _shotSpeed = 4.0f;
 
@@ -17,11 +19,11 @@ public class CharacterPlayer : MonoBehaviour {
     public GameObject _recticlePrefab;
     public GameObject _shotPrefab;
     public GameObject _mouthCenter;
+    public Color _soulColor;
 
     public ControlScheme _controlScheme;
     public string _characterID;
     private bool _isAiming;
-
 
 
     private Vector3 _aimingDirection;
@@ -33,6 +35,8 @@ public class CharacterPlayer : MonoBehaviour {
     {
         _recticleGameObject = GameObject.Instantiate<GameObject>(_recticlePrefab);
         _animator = GetComponent<Animator>();
+        if(!_hasSoul)
+            _animator.SetTrigger("IsFiring");
     }
 	
 	// Update is called once per frame
@@ -45,17 +49,18 @@ public class CharacterPlayer : MonoBehaviour {
         _isAiming = aimingMagnitude > _aimingSensitivity;
 
         _recticleGameObject.SetActive(_isAiming);
-        _recticleGameObject.transform.position = this.transform.position + _recticleDistance * _aimingDirection;
+        _recticleGameObject.transform.position = _mouthCenter.transform.position + _recticleDistance * _aimingDirection;
 
         // FireLogic
-        if (Input.GetButtonDown(_controlScheme.FireButton))
+        if (Input.GetButtonDown(_controlScheme.FireButton) && _hasSoul)
         {
             _animator.SetBool("IsFiring", true);
 
             Vector3 shootDirection = _isAiming ? _aimingDirection : _walkingDirection;
-            GameObject shotGO = GameObject.Instantiate<GameObject>(_shotPrefab, this.transform.position, Quaternion.identity);
+            GameObject shotGO = GameObject.Instantiate<GameObject>(_shotPrefab, _mouthCenter.transform.position, Quaternion.identity);
             Shot shotScript = shotGO.GetComponent<Shot>();
             shotScript.CharacterID = _characterID;
+            shotScript._color = _soulColor;
             shotGO.GetComponent<Rigidbody2D>().position = _mouthCenter.transform.position;
             shotGO.GetComponent<Rigidbody2D>().velocity = shootDirection * _shotSpeed;
 
@@ -77,8 +82,7 @@ public class CharacterPlayer : MonoBehaviour {
             this.transform.localScale = new Vector3(1, 1, 1);
 
 
-
-        this.GetComponent<Rigidbody2D>().velocity = _maxSpeed * new Vector2(_walkingAmont.x, _walkingAmont.y);
+        this.GetComponent<Rigidbody2D>().velocity = (_hasSoul ? _normalSpeed : _hollowSpeed) * new Vector2(_walkingAmont.x, _walkingAmont.y);
 
     }
 

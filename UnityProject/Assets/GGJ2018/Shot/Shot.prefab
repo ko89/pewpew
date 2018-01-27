@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 58326209832995584}
   - component: {fileID: 50300032572590174}
   - component: {fileID: 108434152338857202}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ TrailRenderer:
     alignment: 0
     textureMode: 0
     generateLightingData: 0
-  m_MinVertexDistance: 0.001
+  m_MinVertexDistance: 0.05
   m_Autodestruct: 1
 --- !u!108 &108434152338857202
 Light:
@@ -219,3 +219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f52d63ee6e806514d9f10a65fc1c3226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _characterID: 
+  _travelDistance: 0
+  _bounceCount: 0

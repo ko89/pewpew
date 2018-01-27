@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CharacterPlayer : MonoBehaviour {
 
+
+    public bool _hasSoul = false;
+
     public float _maxSpeed = 0.2f;
     public float _aimingSensitivity = 0.5f;
     public float _shotSpeed = 4.0f;
@@ -13,11 +16,14 @@ public class CharacterPlayer : MonoBehaviour {
     public float _recticleDistance = 0.5f;
     public GameObject _recticlePrefab;
     public GameObject _shotPrefab;
+    public GameObject _mouthCenter;
 
     public ControlScheme _controlScheme;
-
+    public string _characterID;
     private bool _isAiming;
-    private bool _isFiring;
+
+
+
     private Vector3 _aimingDirection;
     private Vector3 _walkingDirection;
     private GameObject _recticleGameObject;
@@ -41,21 +47,24 @@ public class CharacterPlayer : MonoBehaviour {
         _recticleGameObject.SetActive(_isAiming);
         _recticleGameObject.transform.position = this.transform.position + _recticleDistance * _aimingDirection;
 
+        // FireLogic
         if (Input.GetButtonDown(_controlScheme.FireButton))
         {
             _animator.SetBool("IsFiring", true);
 
             Vector3 shootDirection = _isAiming ? _aimingDirection : _walkingDirection;
             GameObject shotGO = GameObject.Instantiate<GameObject>(_shotPrefab, this.transform.position, Quaternion.identity);
-            shotGO.GetComponent<Rigidbody2D>().position = this.transform.position + shootDirection * 0.7f;
+            Shot shotScript = shotGO.GetComponent<Shot>();
+            shotScript.CharacterID = _characterID;
+            shotGO.GetComponent<Rigidbody2D>().position = _mouthCenter.transform.position;
             shotGO.GetComponent<Rigidbody2D>().velocity = shootDirection * _shotSpeed;
 
-            _isFiring = false;
+            _hasSoul = false;
         }
     }
 
     private void FixedUpdate()
-    {
+    {   
         _walkingAmont = new Vector3(Input.GetAxis(_controlScheme.HorzizontalAxis), Input.GetAxis(_controlScheme.VerticalAxis));
         _animator.SetFloat("Speed", _walkingAmont.magnitude);
 
@@ -72,4 +81,11 @@ public class CharacterPlayer : MonoBehaviour {
         this.GetComponent<Rigidbody2D>().velocity = _maxSpeed * new Vector2(_walkingAmont.x, _walkingAmont.y);
 
     }
+
+    public void RecieveSoul()
+    {
+        _animator.SetBool("TriggerReturn", true);
+        _hasSoul = true;
+    }
+
 }

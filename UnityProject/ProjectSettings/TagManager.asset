@@ -13,9 +13,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Characters
+  - Catcher
+  - Shots
   - 
   - 
   - 
@@ -38,6 +38,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BG
+    uniqueID: 1213793187
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Characters
+    uniqueID: 4282191991
+    locked: 0
+  - name: Shots
+    uniqueID: 617500989
+    locked: 0
+  - name: Overlay
+    uniqueID: 1929646775
     locked: 0

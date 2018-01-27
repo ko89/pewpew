@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[SerializeField]
-public class ControlScheme : MonoBehaviour
+[Serializable()]
+public class ControlScheme
 {
     public string HorzizontalAxis = "Horizontal";
     public string VerticalAxis = "Vertical";

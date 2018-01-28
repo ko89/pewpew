@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour {
             walkAmount = Random.Range(2, 3);
             waitTime = Random.Range(1, 3);
             currentTime = 0;
-            Debug.Log("Walk");
+           // Debug.Log("Walk");
             while (currentTime < waitTime)
             {
                 yield return new WaitForFixedUpdate();
@@ -85,7 +85,7 @@ public class Enemy : MonoBehaviour {
                 walkAmount = 0.0f;
             }
 
-                Debug.Log("Wait");
+                //Debug.Log("Wait");
             while (currentTime < waitTime)
             {
                 yield return new WaitForFixedUpdate();
@@ -141,6 +141,9 @@ public class Enemy : MonoBehaviour {
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.contacts.Length == 0)
+            return;
+
         currentWalkVector = collision.contacts[0].normal * walkAmount;
         walkDirection = collision.contacts[0].normal;
         walkDirectionOverride = true;

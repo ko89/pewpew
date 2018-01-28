@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(characterB.Desintegrate());
         _deaths++;
         if (_deaths == 2)
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(3);
 
     }
 }

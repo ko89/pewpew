@@ -6,6 +6,8 @@ public class Obstacle : MonoBehaviour
 {
     public GameObject _destructionPrefab;
     public float _destructionDelay;
+	public AudioSource _audioSource;
+	public AudioClip _audioDesintegrate;
 
 	// Update is called once per frame
 	public void Hit (object shot)

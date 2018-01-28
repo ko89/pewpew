@@ -461,13 +461,13 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'controls:
 
-    left analog stick or wasd or arrow keys for movement
+    <b>left analog stick</b> or <b>wasd</b> or <b>arrow keys</b> for movement
 
 
-    right analog stick for targeting
+    <b>right analog stick</b> for targeting
 
 
-    R1 or left/right ctrl for releasing and catching souls'
+    <b>R1</b> or <b>A</b> or <b>left/right ctrl</b> for releasing and catching souls'
 --- !u!222 &911684528
 CanvasRenderer:
   m_ObjectHideFlags: 0

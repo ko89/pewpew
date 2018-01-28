@@ -10,6 +10,10 @@ public class Shot : MonoBehaviour
     public int _bounceCount = 0;
     public string CharacterID { get { return _characterID; } set { _characterID = value; } }
     public bool _isValid = true;
+
+	public AudioSource _audioSource;
+	public AudioClip _audioBounce;
+
     private void Update()
     {
         this.GetComponent<Renderer>().material.SetColor("_TintColor", _color);
@@ -19,6 +23,7 @@ public class Shot : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         _bounceCount++;
+		_audioSource.PlayOneShot (_audioBounce);
         /*
         CharacterCatcher cc = collision.gameObject.GetComponent<CharacterCatcher>();
         if (cc != null)

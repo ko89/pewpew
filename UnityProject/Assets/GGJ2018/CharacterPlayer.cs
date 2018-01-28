@@ -25,6 +25,12 @@ public class CharacterPlayer : MonoBehaviour {
     public PointEffector2D _sucker;
     public Color _soulColor;
 
+	public AudioSource _audioSource;
+	public AudioClip _audioSendSoul;
+	public AudioClip _audioReceiveSoul;
+	public AudioClip _audioGetHit;
+	public AudioClip _audioDie;
+
     public ControlScheme _controlScheme;
     public string _characterID;
     private bool _isAiming;
@@ -72,7 +78,7 @@ public class CharacterPlayer : MonoBehaviour {
 
             Vector2 shotSpeed = shootDirection.normalized * _shotSpeed;
 
-
+			_audioSource.PlayOneShot (_audioSendSoul);
 
             /*
             if (shotSpeed.magnitude < _shotSpeed)
@@ -126,6 +132,7 @@ public class CharacterPlayer : MonoBehaviour {
     {
         _animator.SetBool("TriggerReturn", true);
         _hasSoul = true;
+		_audioSource.PlayOneShot (_audioReceiveSoul);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -138,9 +145,12 @@ public class CharacterPlayer : MonoBehaviour {
         _animator.SetBool("IsHurt", true);
         _health--;
 
+		_audioSource.PlayOneShot (_audioGetHit);
+
         if (_health <= 0)
         {
             GameManager.Instance.StartCoroutine(Desintegrate());
+			_audioSource.PlayOneShot (_audioDie);
         }
     }
 

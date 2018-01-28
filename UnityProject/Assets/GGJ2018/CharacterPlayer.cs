@@ -130,7 +130,7 @@ public class CharacterPlayer : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (_isHurt)
+        if (_isHurt || collision.gameObject.layer != 12)
             return;
         _hurtTimer = 0;
         _isHurt = true;
@@ -147,7 +147,7 @@ public class CharacterPlayer : MonoBehaviour {
     {
         GameObject.Instantiate<GameObject>(_destructionPrefab, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(0.5f);
-
+        this.gameObject.SetActive(false);
         GameManager.DoGameOver();
     }
 

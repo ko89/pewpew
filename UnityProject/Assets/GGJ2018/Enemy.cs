@@ -32,9 +32,16 @@ public class Enemy : MonoBehaviour {
         Vector3 targetPos;
         while (true)
         {
-            Vector2 hollowDirection = transform.position - _gameManager.HollowPlayer.transform.position; 
-            walkDirection = Random.insideUnitCircle;
+            Vector2 hollowDirection = transform.position - _gameManager.HollowPlayer.transform.position;
+
+
+            if (Random.Range(0, 2) == 0)
+                walkDirection = -hollowDirection;
+            else
+                walkDirection = Random.insideUnitCircle;
+
             walkDirection.Normalize();
+
 
             walkAmount = Random.Range(2, 3);
             waitTime = Random.Range(1, 3);

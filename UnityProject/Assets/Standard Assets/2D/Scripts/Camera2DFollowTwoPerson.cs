@@ -106,7 +106,7 @@ namespace UnityStandardAssets._2D
             newOrtho = Mathf.Max(minOrthoSize, newOrtho);
 
             //m_camera.orthographicSize = Mathf.Max(minOrthoSize, newOrtho);
-            Debug.Log(new Vector3(distToBorder1X, distToBorder1Y));
+            //Debug.Log(new Vector3(distToBorder1X, distToBorder1Y));
 
 
             float orthoMoveDelta = newOrtho - m_OrthoLastTargetValue;

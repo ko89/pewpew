@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     { 
         get
         {
-            if (m_Instance != null)
+            if (m_Instance == null)
                 m_Instance = FindObjectOfType<GameManager>();
             return m_Instance;
         }

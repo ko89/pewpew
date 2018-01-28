@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode()]
 public class IsometricCamera : MonoBehaviour {
     public float _angle;
     public float _angle2;
@@ -36,8 +35,4 @@ public class IsometricCamera : MonoBehaviour {
 
     }
 
-    private void OnDisable()
-    {
-        _camera.ResetProjectionMatrix();
-    }
 }

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
+    public AudioSource _audioSource;
+    public AudioClip _hitAudioClip;
+
     public float _walkSpeed;
     public float _fastWalkSpeed;
     public int _health = 5;
@@ -23,6 +26,7 @@ public class Enemy : MonoBehaviour {
     {
         _gameManager = GameManager.Instance;
         StartCoroutine(Behaviour());
+        
     }
 
 
@@ -186,6 +190,7 @@ public class Enemy : MonoBehaviour {
         _health--;
         if (_health <= 0)
         {
+            _audioSource.PlayOneShot(_hitAudioClip);
             StartCoroutine(Desintegrate());
         }
 

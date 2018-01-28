@@ -132,6 +132,7 @@ public class CharacterPlayer : MonoBehaviour {
     {
         if (_isHurt || collision.gameObject.layer != 12)
             return;
+
         _hurtTimer = 0;
         _isHurt = true;
         _animator.SetBool("IsHurt", true);
@@ -139,16 +140,24 @@ public class CharacterPlayer : MonoBehaviour {
 
         if (_health <= 0)
         {
-            StartCoroutine(Desintegrate());
+            GameManager.Instance.StartCoroutine(Desintegrate());
         }
     }
 
+
+    bool _isDying = false;
     public IEnumerator Desintegrate()
     {
+        if (_isDying)
+            yield break;
         GameObject.Instantiate<GameObject>(_destructionPrefab, transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(0.5f);
-        this.gameObject.SetActive(false);
-        GameManager.DoGameOver();
+        _isDying = true;
+
+        gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(1.5f);
+
+        GameManager.Instance.DoGameOver();
     }
 
 

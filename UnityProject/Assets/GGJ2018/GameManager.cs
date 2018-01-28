@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -48,8 +49,15 @@ public class GameManager : MonoBehaviour
 		
 	}
 
-    internal static void DoGameOver()
+    int _deaths = 0;
+
+    internal void DoGameOver()
     {
-        
+        StartCoroutine(characterA.Desintegrate());
+        StartCoroutine(characterB.Desintegrate());
+        _deaths++;
+        if (_deaths == 2)
+            SceneManager.LoadScene(0);
+
     }
 }

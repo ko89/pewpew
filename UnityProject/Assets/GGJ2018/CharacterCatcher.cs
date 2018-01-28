@@ -37,6 +37,7 @@ public class CharacterCatcher : MonoBehaviour {
 
         _character.RecieveSoul();
         yield return new WaitForFixedUpdate();
+  
         while(true)
         {
             if (s == null)
@@ -48,14 +49,22 @@ public class CharacterCatcher : MonoBehaviour {
             if (dist < 0.05)
                 break;
 
-            float vel = 1 / (dist * dist);
+            float vel = 4;
             vel = Mathf.Min(vel, 5);
             go.GetComponent<Rigidbody2D>().velocity = vel*(targetPos - sourcePos).normalized;
             yield return new WaitForFixedUpdate();
+
         }
 
-
+        go.transform.parent = _character._mouthCenter.transform;
         go.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        float deleteTime = 0.0f;
 
+        while (deleteTime < 2.0)
+        {
+            deleteTime += Time.deltaTime;
+        }
+
+        Destroy(go);
     }
 }

@@ -49,7 +49,7 @@ public class CharacterPlayer : MonoBehaviour {
         float aimingMagnitude = _aimingDirection.magnitude;
         _isAiming = aimingMagnitude > _aimingSensitivity;
 
-        _recticleGameObject.SetActive(_isAiming);
+        _recticleGameObject.SetActive(_isAiming && _hasSoul);
         _recticleGameObject.transform.position = _mouthCenter.transform.position + _recticleDistance * _aimingDirection;
 
         // FireLogic
@@ -63,7 +63,16 @@ public class CharacterPlayer : MonoBehaviour {
             shotScript.CharacterID = _characterID;
             shotScript._color = _soulColor;
             shotGO.GetComponent<Rigidbody2D>().position = _mouthCenter.transform.position;
-            shotGO.GetComponent<Rigidbody2D>().velocity = shootDirection * _shotSpeed;
+
+            Vector2 shotSpeed = shootDirection.normalized * _shotSpeed;
+
+
+
+            /*
+            if (shotSpeed.magnitude < _shotSpeed)
+                shotSpeed = shotSpeed.normalized * _shotSpeed;
+                */
+            shotGO.GetComponent<Rigidbody2D>().velocity = shotSpeed;
 
             _hasSoul = false;
             _isFiring = true;
@@ -87,7 +96,7 @@ public class CharacterPlayer : MonoBehaviour {
 
 
 
-        if (_walkingDirection.x > 0)
+        if (Mathf.Abs(_walkingDirection.x) > 0.02 &&_walkingDirection.x > 0)
             this.transform.localScale = new Vector3(isBack ? 1 : - 1, 1, 1);
         else
             this.transform.localScale = new Vector3(isBack ? -1 : 1, 1, 1);

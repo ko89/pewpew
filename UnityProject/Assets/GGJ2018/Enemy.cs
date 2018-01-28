@@ -122,6 +122,8 @@ public class Enemy : MonoBehaviour {
     public void Update()
     {
         GetComponent<Animator>().SetBool("IsHurt", isHurt);
+        GetComponent<Animator>().SetFloat("Speed", walkAmount);
+        GetComponent<SpriteRenderer>().flipX = walkDirection.x > 0;
     }
 
     public void OnCollisionEnter2D(Collision2D collision)

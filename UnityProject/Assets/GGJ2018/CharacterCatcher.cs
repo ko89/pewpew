@@ -19,7 +19,7 @@ public class CharacterCatcher : MonoBehaviour {
     {
         Shot s = collision.gameObject.GetComponent<Shot>();
 
-        if(s != null)
+        if(s != null && s._isValid)
         {
             StartCoroutine(SuckIn(s, collision.gameObject));
         }
@@ -33,10 +33,15 @@ public class CharacterCatcher : MonoBehaviour {
             yield break;
 
         s._isValid = false;
+        s.gameObject.layer = 11; //IgnoreLayer
+
         _character.RecieveSoul();
         yield return new WaitForFixedUpdate();
         while(true)
         {
+            if (s == null)
+                yield break;
+
             Vector3 targetPos = _character._mouthCenter.transform.position;
             Vector3 sourcePos = s.transform.position;
             float dist = (targetPos - sourcePos).magnitude;

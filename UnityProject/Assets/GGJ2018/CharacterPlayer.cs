@@ -19,13 +19,14 @@ public class CharacterPlayer : MonoBehaviour {
     public GameObject _recticlePrefab;
     public GameObject _shotPrefab;
     public GameObject _mouthCenter;
+    public PointEffector2D _sucker;
     public Color _soulColor;
 
     public ControlScheme _controlScheme;
     public string _characterID;
     private bool _isAiming;
 
-
+    private bool _isFiring;
     private Vector3 _aimingDirection;
     private Vector3 _walkingDirection;
     private GameObject _recticleGameObject;
@@ -38,9 +39,9 @@ public class CharacterPlayer : MonoBehaviour {
         if(!_hasSoul)
             _animator.SetTrigger("IsFiring");
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         //this.transform.position += _maxSpeed * new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * Time.deltaTime;
 
@@ -65,7 +66,13 @@ public class CharacterPlayer : MonoBehaviour {
             shotGO.GetComponent<Rigidbody2D>().velocity = shootDirection * _shotSpeed;
 
             _hasSoul = false;
+            _isFiring = true;
         }
+
+        _sucker.gameObject.SetActive( Input.GetButton(_controlScheme.FireButton) && !_hasSoul && !_isFiring);
+
+        if (Input.GetButtonUp(_controlScheme.FireButton))
+            _isFiring = false;
     }
 
     private void FixedUpdate()
@@ -76,10 +83,14 @@ public class CharacterPlayer : MonoBehaviour {
         if (_walkingAmont.sqrMagnitude > 0.01)
             _walkingDirection = _walkingAmont.normalized;
 
+        bool isBack = GetComponent<CharacterSprites>()._isBack = _walkingDirection.y > 0;
+
+
+
         if (_walkingDirection.x > 0)
-            this.transform.localScale = new Vector3(-1, 1, 1);
+            this.transform.localScale = new Vector3(isBack ? 1 : - 1, 1, 1);
         else
-            this.transform.localScale = new Vector3(1, 1, 1);
+            this.transform.localScale = new Vector3(isBack ? -1 : 1, 1, 1);
 
 
         this.GetComponent<Rigidbody2D>().velocity = (_hasSoul ? _normalSpeed : _hollowSpeed) * new Vector2(_walkingAmont.x, _walkingAmont.y);

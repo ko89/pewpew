@@ -653,7 +653,7 @@ MonoBehaviour:
   _hitAudioClip: {fileID: 0}
   _walkSpeed: 3
   _fastWalkSpeed: 4
-  _health: 5
+  _health: 1
   _destructionPrefab: {fileID: 1964738345991008, guid: b5fdfa9fb8f69454aa18076c0f6efb3b,
     type: 2}
 --- !u!58 &148239101
@@ -1994,7 +1994,7 @@ MonoBehaviour:
   _hitAudioClip: {fileID: 0}
   _walkSpeed: 3
   _fastWalkSpeed: 4
-  _health: 5
+  _health: 1
   _destructionPrefab: {fileID: 1964738345991008, guid: b5fdfa9fb8f69454aa18076c0f6efb3b,
     type: 2}
 --- !u!58 &516241163
@@ -2933,7 +2933,7 @@ MonoBehaviour:
   _hitAudioClip: {fileID: 0}
   _walkSpeed: 3
   _fastWalkSpeed: 4
-  _health: 5
+  _health: 1
   _destructionPrefab: {fileID: 1964738345991008, guid: b5fdfa9fb8f69454aa18076c0f6efb3b,
     type: 2}
 --- !u!58 &715527953
@@ -4061,7 +4061,7 @@ MonoBehaviour:
   _hitAudioClip: {fileID: 0}
   _walkSpeed: 3
   _fastWalkSpeed: 4
-  _health: 5
+  _health: 1
   _destructionPrefab: {fileID: 1964738345991008, guid: b5fdfa9fb8f69454aa18076c0f6efb3b,
     type: 2}
 --- !u!58 &986906726
@@ -4658,7 +4658,7 @@ MonoBehaviour:
   _hitAudioClip: {fileID: 0}
   _walkSpeed: 3
   _fastWalkSpeed: 4
-  _health: 5
+  _health: 1
   _destructionPrefab: {fileID: 1964738345991008, guid: b5fdfa9fb8f69454aa18076c0f6efb3b,
     type: 2}
 --- !u!58 &1080375589
@@ -5579,7 +5579,7 @@ MonoBehaviour:
   _hitAudioClip: {fileID: 0}
   _walkSpeed: 3
   _fastWalkSpeed: 4
-  _health: 5
+  _health: 1
   _destructionPrefab: {fileID: 1964738345991008, guid: b5fdfa9fb8f69454aa18076c0f6efb3b,
     type: 2}
 --- !u!58 &1303067719
@@ -6118,7 +6118,7 @@ MonoBehaviour:
   _hitAudioClip: {fileID: 0}
   _walkSpeed: 3
   _fastWalkSpeed: 4
-  _health: 5
+  _health: 1
   _destructionPrefab: {fileID: 1964738345991008, guid: b5fdfa9fb8f69454aa18076c0f6efb3b,
     type: 2}
 --- !u!58 &1573882784
@@ -7949,7 +7949,7 @@ MonoBehaviour:
   _hitAudioClip: {fileID: 0}
   _walkSpeed: 3
   _fastWalkSpeed: 4
-  _health: 5
+  _health: 1
   _destructionPrefab: {fileID: 1964738345991008, guid: b5fdfa9fb8f69454aa18076c0f6efb3b,
     type: 2}
 --- !u!58 &1981813217

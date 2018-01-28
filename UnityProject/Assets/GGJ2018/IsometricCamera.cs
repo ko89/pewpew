@@ -28,7 +28,7 @@ public class IsometricCamera : MonoBehaviour {
         float translate2 = 2.0f * Mathf.Sin(_angle2 * Mathf.Deg2Rad) * orthoSize;
 
 
-        _camera.projectionMatrix = pm * Matrix4x4.TRS(new Vector3(0, translate, 0), Quaternion.Euler(_angle, 0, 0), new Vector3(1, angleScale, 1)) * Matrix4x4.TRS(new Vector3(translate2, 0, 0), Quaternion.Euler(0, _angle2, 0), new Vector3(angleScale2, 1, 1));
+        _camera.projectionMatrix = pm * Matrix4x4.TRS(new Vector3(0, 0.5f * translate, 0), Quaternion.Euler(_angle, 0, 0), new Vector3(1, angleScale, 1)) * Matrix4x4.TRS(new Vector3(translate2, 0, 0), Quaternion.Euler(0, _angle2, 0), new Vector3(angleScale2, 1, 1));
 
         //= Matrix4x4.Ortho(_camera.rect.left, _camera.rect.right, _camera.rect.bottom, _camera.rect.top, _camera.near, _camera.far);
 

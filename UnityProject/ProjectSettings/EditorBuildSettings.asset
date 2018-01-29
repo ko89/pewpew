@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/GGJ2018/Scenes/StartScene.unity
     guid: d73ea2b7187ec9d4ab151ed78b99a7d7
   - enabled: 1
-    path: Assets/wormArena2.unity
-    guid: c51a6871514eeeb4f99aaa62ccc3d0de
+    path: Assets/GGJ2018/Scenes/wormArena3.unity
+    guid: 435682b5dcd76b546b3b79c4bc7c75a1
   - enabled: 1
     path: Assets/GGJ2018/Scenes/YouAreWinnerScene.unity
     guid: 0a27b661566793d47a245097eca7b885

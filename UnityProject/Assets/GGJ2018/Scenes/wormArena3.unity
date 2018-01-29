@@ -2532,7 +2532,7 @@ MonoBehaviour:
   _normalSpeed: 4.5
   _hollowSpeed: 4.5
   _aimingSensitivity: 0.5
-  _shotSpeed: 3
+  _shotSpeed: 10
   _walkingAmont: {x: 0, y: 0, z: 0}
   _health: 3
   _recticleDistance: 2.5
@@ -4719,7 +4719,7 @@ Transform:
   m_GameObject: {fileID: 718171021}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 19, y: 4, z: -1.2}
-  m_LocalScale: {x: 2, y: 4, z: 2}
+  m_LocalScale: {x: 2, y: 5.67, z: 2}
   m_Children:
   - {fileID: 411121442}
   m_Father: {fileID: 2069450029}
@@ -5174,7 +5174,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 794689709}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.28, y: 0.41, z: 0}
+  m_LocalPosition: {x: 26.16, y: -6.41, z: 0}
   m_LocalScale: {x: 0.6726925, y: 0.58447945, z: 0.9814422}
   m_Children:
   - {fileID: 1800808225}
@@ -6656,8 +6656,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1076215576}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19, y: -1, z: -1.2}
-  m_LocalScale: {x: 2, y: 4, z: 2}
+  m_LocalPosition: {x: 19, y: -1.45, z: -1.2}
+  m_LocalScale: {x: 2, y: 5, z: 2}
   m_Children:
   - {fileID: 1396867946}
   m_Father: {fileID: 2069450029}
@@ -8288,7 +8288,7 @@ MonoBehaviour:
   _normalSpeed: 4.5
   _hollowSpeed: 4.5
   _aimingSensitivity: 0.5
-  _shotSpeed: 3
+  _shotSpeed: 10
   _walkingAmont: {x: 0, y: 0, z: 0}
   _health: 3
   _recticleDistance: 2.5
@@ -11895,7 +11895,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2001859286}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 12.02, y: -2.42, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

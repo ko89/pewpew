@@ -90,7 +90,11 @@ public class CharacterPlayer : MonoBehaviour {
             _isFiring = true;
         }
 
-        _sucker.gameObject.SetActive(Input.GetButton(_controlScheme.FireButton) && !_hasSoul && !_isFiring);
+        bool isSucking = Input.GetButton(_controlScheme.FireButton) && !_hasSoul && !_isFiring;
+
+        _sucker.gameObject.SetActive(isSucking);
+        _animator.SetBool("IsSucking", isSucking);
+
 
         if (Input.GetButtonUp(_controlScheme.FireButton))
             _isFiring = false;
@@ -104,14 +108,18 @@ public class CharacterPlayer : MonoBehaviour {
         if (_walkingAmont.sqrMagnitude > 0.01)
             _walkingDirection = _walkingAmont.normalized;
 
-        bool isBack = GetComponent<CharacterSprites>()._isBack = _walkingDirection.y > 0;
+        if (Mathf.Abs(_walkingDirection.y) > 0.02 && _walkingDirection.y > 0)
+            _animator.SetBool("IsBack", true);
+        else
+            _animator.SetBool("IsBack", false);
 
 
+        // bool isBack = GetComponent<CharacterSprites>()._isBack = _walkingDirection.y > 0;
 
         if (Mathf.Abs(_walkingDirection.x) > 0.02 && _walkingDirection.x > 0)
-            this.transform.localScale = new Vector3(isBack ? 1 : -1, 1, 1);
+            this.transform.localScale = new Vector3( -1, 1, 1);
         else
-            this.transform.localScale = new Vector3(isBack ? -1 : 1, 1, 1);
+            this.transform.localScale = new Vector3( 1, 1, 1);
 
 
         this.GetComponent<Rigidbody2D>().velocity = (_hasSoul ? _normalSpeed : _hollowSpeed) * new Vector2(_walkingAmont.x, _walkingAmont.y);
@@ -150,7 +158,7 @@ public class CharacterPlayer : MonoBehaviour {
         if (_health <= 0)
         {
             GameManager.Instance.StartCoroutine(Desintegrate());
-			_audioSource.PlayOneShot (_audioDie);
+
         }
     }
 
@@ -160,10 +168,12 @@ public class CharacterPlayer : MonoBehaviour {
     {
         if (_isDying)
             yield break;
+
+        _audioSource.PlayOneShot(_audioDie);
         GameObject.Instantiate<GameObject>(_destructionPrefab, transform.position, Quaternion.identity);
         _isDying = true;
 
-        gameObject.SetActive(false);
+        GetComponent<SpriteRenderer>().color = Color.clear;
 
         yield return new WaitForSeconds(1.5f);
 

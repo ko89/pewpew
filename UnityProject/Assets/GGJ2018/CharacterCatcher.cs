@@ -49,7 +49,7 @@ public class CharacterCatcher : MonoBehaviour {
             if (dist < 0.05)
                 break;
 
-            float vel = 4;
+            float vel = 8;
             vel = Mathf.Min(vel, 5);
             go.GetComponent<Rigidbody2D>().velocity = vel*(targetPos - sourcePos).normalized;
             yield return new WaitForFixedUpdate();
